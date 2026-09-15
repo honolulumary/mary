@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="3개 기업의 5개년 매출을 기기 안에서 분석하는 로컬 대시보드">
+  <title>기업 매출 분석실</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b1220'/%3E%3Cpath d='M7 23V15h4v8zm7 0V9h4v14zm7 0V12h4v11z' fill='%236ee7d8'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">LOCAL REVENUE ANALYTICS</p>
+      <h1>기업 매출 분석실</h1>
+    </div>
+    <div class="privacy"><span></span><strong>로컬 처리</strong><small>데이터가 이 기기를 벗어나지 않습니다</small></div>
+  </header>
+
+  <main>
+    <section class="control-panel" aria-label="분석 조건">
+      <div class="source-card">
+        <span class="source-icon" aria-hidden="true">X</span>
+        <div><strong>가상기업 3개 5개년매출데이터.xlsx</strong><small>월간매출 · 60개월 · 3개 기업</small></div>
+        <span class="connected">연결됨</span>
+      </div>
+      <div class="filters">
+        <label>기간<select id="yearFilter"><option value="all">2021–2025 전체</option><option>2025</option><option>2024</option><option>2023</option><option>2022</option><option>2021</option></select></label>
+        <fieldset><legend>기업</legend><div id="companyFilters"></div></fieldset>
+      </div>
+    </section>
+
+    <section class="kpis" id="kpis" aria-label="핵심 지표"></section>
+
+    <section class="grid two">
+      <article class="panel hero-chart">
+        <div class="panel-head"><div><p class="section-label">매출 추세</p><h2>월별 매출 흐름</h2></div><span class="unit">단위: 억원</span></div>
+        <div id="lineChart" class="chart" role="img" aria-label="월별 매출 선 차트"></div>
+        <div id="legend" class="legend"></div>
+      </article>
+      <article class="panel insight-panel">
+        <div class="panel-head"><div><p class="section-label">자동 분석</p><h2>데이터가 말하는 것</h2></div><span class="spark">✦</span></div>
+        <div id="insights" class="insights"></div>
+      </article>
+    </section>
+
+    <section class="grid two lower">
+      <article class="panel">
+        <div class="panel-head"><div><p class="section-label">연도 비교</p><h2>연간 매출과 성장률</h2></div></div>
+        <div id="barChart" class="chart compact" role="img" aria-label="연간 매출 막대 차트"></div>
+      </article>
+      <article class="panel">
+        <div class="panel-head"><div><p class="section-label">계절성</p><h2>월별 평균 매출</h2></div><span class="unit">5개년 평균</span></div>
+        <div id="seasonChart" class="chart compact" role="img" aria-label="월별 평균 매출 차트"></div>
+      </article>
+    </section>
+
+    <section class="panel table-panel">
+      <div class="panel-head"><div><p class="section-label">상세 데이터</p><h2>월별 원본 값</h2></div><button id="csvBtn" type="button">CSV 내려받기</button></div>
+      <div class="table-wrap"><table><thead id="tableHead"></thead><tbody id="tableBody"></tbody></table></div>
+    </section>
+  </main>
+  <footer>파일 안의 값만 사용하며, 분석·필터·내보내기는 브라우저에서 처리됩니다.</footer>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
